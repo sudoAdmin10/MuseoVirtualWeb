@@ -1,0 +1,34 @@
+<div class="container">
+
+
+
+    <h2>Bienvenido al Panel de Administración del Museo Virtual🏛️</h2>
+
+    <div class="stats-grid">
+        <div class="stat-box">👩‍🏫 Profesores participantes: 12</div>
+        <div class="stat-box">🖼️ Imágenes subidas: 120</div>
+        <div class="stat-box">👁️ Visitas totales: 8,500</div>
+    </div>
+
+    <div class="info-box">
+        <h3>Información General del Museo</h3>
+        <p>
+            Este sistema permite a los profesores subir contenido visual, gestionar galerías virtuales
+            y acceder a estadísticas de participación del museo.
+        </p>
+    </div>
+
+    <div class="upload-file">
+        <h3>Subir Imagen</h3>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        <img [src]="previewUrl" *ngIf="previewUrl" alt="Vista previa de la imagen" />
+
+        <div *ngIf="uploadedUrl">
+            <h2>URL de la imagen:</h2>
+            <p>{{ uploadedUrl }}</p>
+            <button (click)="copyUrl()">Copiar URL</button>
+        </div>
+
+    </div>
+
+</div>
