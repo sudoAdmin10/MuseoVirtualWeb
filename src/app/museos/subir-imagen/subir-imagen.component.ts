@@ -31,7 +31,10 @@ export class SubirImagenComponent {
       method: 'POST',
       body: formData
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Error en la subida');
+        return res.json();
+      })
       .then(data => {
         if (data.success) {
           this.uploadedUrl = data.data.url;
@@ -41,7 +44,7 @@ export class SubirImagenComponent {
       })
       .catch(err => {
         console.error('Error:', err);
-        alert('Error de red');
+        alert('Ocurrió un error al subir la imagen.');
       });
   }
 

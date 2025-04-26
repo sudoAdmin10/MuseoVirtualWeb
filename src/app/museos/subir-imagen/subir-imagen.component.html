@@ -1,14 +1,31 @@
-<!-- subir-imagen.component.html -->
+<div class="container">
+    <div class="upload-file">
+        <h3>Bienvenido, aquí puedes subir nuevo contenido para el museo virtual</h3>
+        <p>Selecciona una imagen para subir:</p>
 
-<div class="upload-file">
-    <h3>Subir Imagen</h3>
-    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-    <img [src]="previewUrl" *ngIf="previewUrl" alt="Vista previa de la imagen" />
+        <!-- Campo de selección de archivo -->
+        <div class="file-input-container">
+            <label class="file-input-label">
+                <mat-icon>cloud_upload</mat-icon>
+                Seleccionar archivo
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+            </label>
+        </div>
 
-    <div *ngIf="uploadedUrl">
-        <h2>URL de la imagen:</h2>
-        <p>{{ uploadedUrl }}</p>
-        <button (click)="copyUrl()">Copiar URL</button>
+        <!-- Vista previa de la imagen -->
+        <div *ngIf="previewUrl" class="preview-container">
+            <img [src]="previewUrl" alt="Vista previa de la imagen" class="preview-image" />
+        </div>
+
+        <!-- Resultado de la URL -->
+        <div *ngIf="uploadedUrl" class="result-container">
+            <h4>URL de la imagen:</h4>
+            <div class="url-box">
+                <span id="url">{{ uploadedUrl }}</span>
+                <button mat-icon-button (click)="copyUrl()" class="copy-button">
+                    <mat-icon>content_copy</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
-
 </div>
