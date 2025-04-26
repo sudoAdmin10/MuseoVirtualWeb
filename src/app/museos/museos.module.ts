@@ -18,6 +18,10 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     MuseosRoutingModule,
     SharedModule
-  ]
+  ],
+  exports: [
+    MuseosComponent,
+    GaleriaComponent,
+    SubirImagenComponent]
 })
 export class MuseosModule { }

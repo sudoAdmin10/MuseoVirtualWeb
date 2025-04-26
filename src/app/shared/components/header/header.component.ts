@@ -20,11 +20,11 @@ export class HeaderComponent {
     this.router.navigate(['/dashboard']);
   }
 
-  teachers() {
-    this.router.navigate(['/profesores']);
+  galery() {
+    this.router.navigate(['/museo/galeria']);
   }
 
   museum() {
-    this.router.navigate(['/museo']);
+    this.router.navigate(['/museo/subir-contenido']);
   }
 }

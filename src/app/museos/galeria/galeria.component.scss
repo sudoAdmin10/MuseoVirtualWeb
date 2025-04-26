@@ -1,0 +1,36 @@
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.large {
+    grid-row: span 2;
+}
+
+.medium {
+    grid-row: span 1.5;
+}
+
+.small {
+    grid-row: span 1;
+}
+
+.gallery-container div {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-container div:hover img {
+    transform: scale(1.1);
+}

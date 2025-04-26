@@ -1,1 +1,5 @@
-<p>galeria works!</p>
+<div class="gallery-container">
+    <div *ngFor="let image of images" [ngClass]="image.size">
+        <img [src]="image.src" alt="Gallery Image">
+    </div>
+</div>
