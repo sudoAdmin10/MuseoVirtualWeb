@@ -1,81 +1,101 @@
-<div class="container">
-
-
-
-    <h2>Bienvenido al Panel de Administración del Museo Virtual🏛️</h2>
-
-    <div class="stats-grid">
-        <div class="stat-box">👩‍🏫 Profesores participantes: 12</div>
-        <div class="stat-box">🖼️ Imágenes subidas: 120</div>
-        <div class="stat-box">👁️ Visitas totales: 8,500</div>
+<section class="banner-section">
+    <div class="overlay"></div>
+    <div class="content-container">
+        <h1 class="banner-title">Universidad de Montemorelos</h1>
+        <p>Sistema del Museo Virual Universitario</p>
     </div>
+</section>
 
-    <div class="info-box">
-        <h3>Información General del Museo</h3>
-        <p>
-            Este sistema permite a los profesores subir contenido visual, gestionar galerías virtuales
-            y acceder a estadísticas de participación del museo.
-        </p>
-    </div>
 
-    <div class="upload-file">
-        <h3>Subir Imagen</h3>
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-        <img [src]="previewUrl" *ngIf="previewUrl" alt="Vista previa de la imagen" />
+<section class="academic-commitment">
+    <div class="container">
+        <h2 class="title">University's Commitment to Academic Excellence</h2>
+        <div class="content-grid">
+            <div class="column">
+                <img src="../../../assets/img/m1.jpg" alt="University Building">
+                <p>At Cyprus International University, we are dedicated to providing an exceptional academic experience.
+                    Our commitment to excellence is reflected in our rigorous curriculum, distinguished faculty, and
+                    state-of-the-art facilities. We strive to foster a learning environment that encourages critical
+                    thinking and personal growth. Join us and be a part of a community that values academic integrity,
+                    lifelong learning, and the pursuit of knowledge.</p>
+                <button mat-button color="primary">Apply Now</button>
+            </div>
 
-        <div *ngIf="uploadedUrl">
-            <h2>URL de la imagen:</h2>
-            <p>{{ uploadedUrl }}</p>
-            <button (click)="copyUrl()">Copiar URL</button>
+            <div class="column">
+                <img src="../../../assets/img/m4.jpg" alt="Students Group">
+                <p>At Cyprus International University, we are dedicated to achieving the highest standards in education
+                    and research. Our commitment to academic excellence is evident in every aspect of our institution.
+                </p>
+            </div>
+
+            <div class="statistics">
+                <div class="statistic">
+                    <span>30+</span>
+                    <p>Courses</p>
+                </div>
+                <div class="statistic">
+                    <span>10+</span>
+                    <p>Startups</p>
+                </div>
+                <div class="statistic">
+                    <span>40+</span>
+                    <p>Languages</p>
+                </div>
+                <div class="statistic">
+                    <span>1000+</span>
+                    <p>Professors</p>
+                </div>
+            </div>
         </div>
-
     </div>
+</section>
 
+<section class="academic-offerings">
+    <div class="container">
+        <h2 class="title">Explore Our Academic Offerings</h2>
+        <p>Chart Your Path to Success at Cyprus International University, where we are dedicated to achieving the
+            highest standards in education and research. Our commitment to academic excellence is evident in every
+            aspect of our institution.</p>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="icon">
+                    <mat-icon>settings</mat-icon>
+                </div>
+                <h3>Ingeniería</h3>
+                <p>Desarrolla habilidades técnicas y resuelve problemas complejos.</p>
+            </div>
 
-    <div class="upload-file">
-        <form action="">
-            <h3>Subir Imagenes</h3>
-            <input type="text" name="description" id="description">
-        </form>
+            <div class="program-card">
+                <div class="icon">
+                    <mat-icon>psychology_alt</mat-icon>
+                </div>
+                <h3>Psicología</h3>
+                <p>Estudia la mente humana con enfoque en salud mental y desarrollo.</p>
+            </div>
+
+            <div class="program-card">
+                <div class="icon">
+                    <mat-icon>palette</mat-icon>
+                </div>
+                <h3>Artes</h3>
+                <p>Despliega tu creatividad con entrenamiento práctico.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="stats-grid">
-        <div class="stat-box">👩‍🏫 Profesores participantes: 12</div>
-        <div class="stat-box">🖼️ Imágenes subidas: 120</div>
-        <div class="stat-box">👁️ Visitas totales: 8,500</div>
+<section class="contacto" id="visitanos">
+    <h2>Visítanos</h2>
+    <div class="info-contacto">
+        <p><mat-icon>schedule</mat-icon> {{ museo.horario }}</p>
+        <p><mat-icon>phone</mat-icon> {{ museo.contacto.telefono }}</p>
+        <p><mat-icon>email</mat-icon> {{ museo.contacto.email }}</p>
+        <p><mat-icon>place</mat-icon> {{ museo.contacto.direccion }}</p>
     </div>
-
-    <div class="info-box">
-        <h3>Información General del Museo</h3>
-        <p>
-            Este sistema permite a los profesores subir contenido visual, gestionar galerías virtuales
-            y acceder a estadísticas de participación del museo.
-        </p>
+    <div class="mapa">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3610.17840938348!2d-99.84637497109085!3d25.197205232607146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1745633765243!5m2!1ses-419!2smx"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
-
-
-    <div class="upload-file">
-        <form action="">
-            <h3>Subir Imagenes</h3>
-            <input type="text" name="description" id="description">
-        </form>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-box">👩‍🏫 Profesores participantes: 12</div>
-        <div class="stat-box">🖼️ Imágenes subidas: 120</div>
-        <div class="stat-box">👁️ Visitas totales: 8,500</div>
-    </div>
-
-    <div class="info-box">
-        <h3>Información General del Museo</h3>
-        <p>
-            Este sistema permite a los profesores subir contenido visual, gestionar galerías virtuales
-            y acceder a estadísticas de participación del museo.
-        </p>
-    </div>
-
-
-
-</div>
+</section>

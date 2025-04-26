@@ -15,11 +15,11 @@ export class AuthService {
         if (email === 'prof@univ.com' && password === '123456') {
             this.currentUser = {
                 id: 1,
-                fullName: 'Dr. Jane Smith',
+                fullName: 'Prof. Ignacio Cruz Dominguez',
                 email,
                 department: 'Computer Science',
                 biography: 'Expert in AI and Machine Learning.',
-                photoUrl: 'https://via.placeholder.com/120'
+                photoUrl: '../../../../assets/img/profile.png'
             };
             return true;
         }
