@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,24 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  constructor(private router: Router) { }
+
+
   @Output() toggleSidebar = new EventEmitter<void>();
 
+  profile() {
+    this.router.navigate(['/profesores/profile']);
+  }
+
+  home() {
+    this.router.navigate(['/dashboard']);
+  }
+
+  teachers() {
+    this.router.navigate(['/profesores']);
+  }
+
+  museum() {
+    this.router.navigate(['/museo']);
+  }
 }

@@ -7,13 +7,15 @@ import { ListadoComponent } from './listado/listado.component';
 import { CrearEditarComponent } from './crear-editar/crear-editar.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material/material.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
     ProfesoresComponent,
     ListadoComponent,
-    CrearEditarComponent
+    CrearEditarComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

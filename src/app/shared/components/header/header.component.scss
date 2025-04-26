@@ -1,10 +1,11 @@
 .header-toolbar {
     display: flex;
     justify-content: space-between;
-    padding: 0 16px;
-    background-color: white;
-    color: #301A4B;
-    // #554470
+    padding: 16px;
+    background-color: #f5f7fa;
+    color: #582aa8;
+    min-height: 64px;
+    font-weight: bold;
 }
 
 .spacer {
@@ -17,7 +18,14 @@
 }
 
 .img-logo {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 80px;
+    max-width: 80px;
+
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
 }

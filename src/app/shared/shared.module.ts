@@ -7,6 +7,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { MatCardModule } from '@angular/material/card'
+import { FormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 
 @NgModule({
@@ -20,14 +22,17 @@ import { MatCardModule } from '@angular/material/card'
     CommonModule,
     RouterModule,
     MaterialModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
     NavbarComponent,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    MatIcon,
 
   ]
 })

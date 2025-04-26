@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="auth-container">
+    <div class="university-header">
+        <img src="https://1.bp.blogspot.com/-safTUceIPN0/XOf9fjpdNeI/AAAAAAAAImY/cEFBG0TBrqI4-bEGAwVPQaFF8IMEOJ7KgCLcBGAs/s200/136.png"
+            alt="Logo Universidad" class="university-logo">
+        <h1>Sistema Educativo Universitario</h1>
+        <p>Plataforma de gestión académica</p>
+    </div>
+
+    <div class="system-info">
+        <p>Versión 2.5.1 | <a href="#">Términos de uso</a> | <a href="#">Política de privacidad</a></p>
+    </div>
+
+    <h2 *ngIf="isLogin">Ingresar</h2>
+    <h2 *ngIf="!isLogin">Registrar</h2>
+
+    <form (ngSubmit)="onSubmit()">
+        <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+        <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
+
+        <ng-container *ngIf="!isLogin">
+            <input type="text" placeholder="Nombre Completo" [(ngModel)]="fullName" name="fullName" required />
+            <input type="text" placeholder="Departmento" [(ngModel)]="department" name="department" required />
+        </ng-container>
+
+        <button type="submit">{{ isLogin ? 'Ingresar' : 'Registrarse' }}</button>
+        <p (click)="toggleForm()" class="toggle">
+            {{ isLogin ? "Tienes una? Register" : "Already registered? Login" }}
+        </p>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+.container-footer {
+    height: 300px;
+    background-color: #582aa8;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 300px;
+}
+
+.col-1,
+.col-2,
+.col-3 {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.col-1 img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.col-2 a,
+.col-3 a {
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+}
+
+h4 {
+    margin-bottom: 20px;
+}

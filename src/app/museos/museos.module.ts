@@ -5,6 +5,7 @@ import { MuseosRoutingModule } from './museos-routing.module';
 import { MuseosComponent } from './museos.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { SubirImagenComponent } from './subir-imagen/subir-imagen.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SubirImagenComponent } from './subir-imagen/subir-imagen.component';
   ],
   imports: [
     CommonModule,
-    MuseosRoutingModule
+    MuseosRoutingModule,
+    SharedModule
   ]
 })
 export class MuseosModule { }

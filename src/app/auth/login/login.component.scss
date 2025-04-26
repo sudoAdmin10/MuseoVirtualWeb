@@ -1,0 +1,262 @@
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.university-header {
+    text-align: center;
+    //padding: 30px 20px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.university-logo {
+    max-width: 80%;
+    max-height: 80%;
+    //margin-bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    content: auto;
+}
+
+.university-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.university-header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.login-form {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.form-group label i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+.password-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.password-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.password-options input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Botón de login */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button i {
+    margin-left: 8px;
+}
+
+.login-button:hover {
+    background-color: #002244;
+}
+
+/* Pie de formulario */
+.login-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.register-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.register-link:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.help-text {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    color: #666;
+}
+
+.help-text i {
+    color: var(--accent-color);
+    margin-right: 5px;
+}
+
+.help-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.help-text a:hover {
+    text-decoration: underline;
+}
+
+/* Información del sistema */
+.system-info {
+    padding: 15px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #777;
+    border-top: 1px solid var(--border-color);
+}
+
+.system-info a {
+    color: #777;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.system-info a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-container {
+        border-radius: 0;
+    }
+
+    .university-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+}
+
+//**************************
+
+.auth-container {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        color: #301A4B;
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #6c2bd9;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .toggle {
+        margin-top: 12px;
+        text-align: center;
+        color: #6c2bd9;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}

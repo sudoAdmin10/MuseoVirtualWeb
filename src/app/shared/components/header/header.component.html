@@ -1,10 +1,30 @@
 <mat-toolbar class="header-toolbar">
-    <button mat-button (click)="toggleSidebar.emit()" color="primary">
-        <img src="../../../../assets/img/logoFit.png" alt="logoFit" class="img-logo">
+    <button mat-button color="primary">
+        <img src="../../../../assets/img/logoUni.png" alt="logoFit" class="img-logo">
     </button>
 
     <span class="spacer"></span>
-    <button mat-icon-button>
-        <mat-icon>account_circle</mat-icon>
-    </button>
+    <div class="navbar">
+        <button mat-button (click)="home()">
+            <strong>Inicio</strong>
+        </button>
+
+        <button mat-button (click)="teachers()">
+            <strong>Profesores</strong>
+        </button>
+
+        <button mat-button (click)="museum()">
+            <strong>Museo</strong>
+        </button>
+
+        <span class="spacer"></span>
+
+        <button mat-icon-button (click)="profile()">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+    </div>
+
+
+
+
 </mat-toolbar>

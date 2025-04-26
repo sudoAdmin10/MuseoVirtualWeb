@@ -1,4 +1,14 @@
 <!-- subir-imagen.component.html -->
-<h3>Subir Imagen de Museo</h3>
-<input type="file" (change)="onFileSelected($event)" />
-<button (click)="subirImagen()">Subir</button>
+
+<div class="upload-file">
+    <h3>Subir Imagen</h3>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+    <img [src]="previewUrl" *ngIf="previewUrl" alt="Vista previa de la imagen" />
+
+    <div *ngIf="uploadedUrl">
+        <h2>URL de la imagen:</h2>
+        <p>{{ uploadedUrl }}</p>
+        <button (click)="copyUrl()">Copiar URL</button>
+    </div>
+
+</div>
