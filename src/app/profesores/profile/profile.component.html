@@ -1,9 +1,9 @@
 <div *ngIf="user" class="profile-container">
-    <img [src]="user.photoUrl || 'https://via.placeholder.com/120'" class="avatar" />
-    <h2>{{ user.fullName }}</h2>
+    <!--<img [src]="user.photoUrl || 'https://via.placeholder.com/120'" class="avatar" />-->
+    <h2>{{ user.username }}</h2>
     <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Department:</strong> {{ user.department }}</p>
-    <p><strong>Bio:</strong> {{ user.biography || 'No biography yet.' }}</p>
+    <p><strong>Department:</strong> {{ user.username }}</p>
+    <p><strong>Bio:</strong> {{ user.role || 'No biography yet.' }}</p>
 
     <button (click)="logout()">Logout</button>
 </div>

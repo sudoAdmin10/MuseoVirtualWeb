@@ -1,8 +1,7 @@
 export interface Teacher {
     id: number;
-    fullName: string;
+    username: string;
     email: string;
-    department: string;
-    photoUrl?: string;
-    biography?: string;
+    password: string;
+    role: string;
 }

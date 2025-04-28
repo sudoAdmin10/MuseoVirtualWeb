@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Teacher } from 'src/app/models/teacher.model';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,8 @@ export class LoginComponent {
 
   email = '';
   password = '';
+  username = '';
 
-  fullName = '';
-  department = '';
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -23,14 +23,36 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const success = this.isLogin
-      ? this.auth.login(this.email, this.password)
-      : this.auth.register({ email: this.email, fullName: this.fullName, department: this.department });
-
-    if (success) {
-      this.router.navigate(['/profile']);
+    if (this.isLogin) {
+      this.auth.login(this.email, this.password).subscribe(
+        (user) => {
+          console.log('Inicio de sesión exitoso:', user);
+          this.router.navigate(['/profile']);
+        },
+        (error) => {
+          console.error('Error en credenciales:', error);
+          alert('Credenciales incorrectas');
+        }
+      );
     } else {
-      alert('Error in credentials');
+      const newUser = {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+      };
+
+      this.auth.register(newUser).subscribe(
+        (user) => {
+          console.log('Registro exitoso:', user);
+          this.router.navigate(['/profile']);
+        },
+        (error) => {
+          console.error('Error en el registro:', error);
+          alert('Error al registrarse');
+        }
+      );
     }
   }
+
+
 }

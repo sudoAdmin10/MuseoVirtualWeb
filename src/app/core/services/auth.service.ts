@@ -8,34 +8,25 @@ import { Teacher } from "src/app/models/teacher.model";
 })
 
 export class AuthService {
+    constructor(private http: HttpClient) { }
     private currentUser: Teacher | null = null;
+    url = 'http://localhost:3000/users'
 
-    login(email: string, password: string): boolean {
-        // Simulación básica
-        if (email === 'prof@univ.com' && password === '123456') {
-            this.currentUser = {
-                id: 1,
-                fullName: 'Prof. Ignacio Cruz Dominguez',
-                email,
-                department: 'Computer Science',
-                biography: 'Expert in AI and Machine Learning.',
-                photoUrl: '../../../../assets/img/profile.png'
-            };
-            return true;
-        }
-        return false;
+    login(email: string, password: string): Observable<any> {
+        const body = { email, password }
+        return this.http.post(`${this.url}/login`, body)
     }
 
-    register(data: Partial<Teacher>): boolean {
-        // Simulación simple
-        this.currentUser = {
-            id: 2,
-            fullName: data.fullName || 'New Teacher',
-            email: data.email || '',
-            department: data.department || '',
-            biography: '',
+    register(data: Partial<Teacher>): Observable<any> {
+        const defaultData: Partial<Teacher> = {
+            username: data.username || 'default_user',
+            role: data.role || 'visitor',
         };
-        return true;
+
+        const body = { ...data, ...defaultData };
+
+        return this.http.post(`${this.url}/register`, body)
+
     }
 
     getCurrentUser(): Teacher | null {

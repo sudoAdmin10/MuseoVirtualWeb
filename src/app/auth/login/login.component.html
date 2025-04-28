@@ -18,8 +18,7 @@
         <input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required />
 
         <ng-container *ngIf="!isLogin">
-            <input type="text" placeholder="Nombre Completo" [(ngModel)]="fullName" name="fullName" required />
-            <input type="text" placeholder="Departmento" [(ngModel)]="department" name="department" required />
+            <input type="text" placeholder="Nombre de Usuario" [(ngModel)]="username" name="username" />
         </ng-container>
 
         <button type="submit">{{ isLogin ? 'Ingresar' : 'Registrarse' }}</button>
