@@ -101,3 +101,13 @@
         color: #512da8;
     }
 }
+
+.upload-button {
+    position: relative;
+    flex-direction: row;
+    margin-top: 20px;
+
+    button {
+        width: 100%;
+    }
+}

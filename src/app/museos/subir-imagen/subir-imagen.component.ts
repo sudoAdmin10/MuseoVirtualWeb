@@ -7,6 +7,10 @@ import { MuseoService } from 'src/app/core/services/museo.service';
   styleUrls: ['./subir-imagen.component.scss']
 })
 export class SubirImagenComponent {
+
+  constructor(private service: MuseoService,) { }
+
+
   previewUrl: string | ArrayBuffer | null = null;
   uploadedUrl: string = '';
   API_KEY = '988c64c9642af875f58453c53c6c84b7';
@@ -38,6 +42,7 @@ export class SubirImagenComponent {
       .then(data => {
         if (data.success) {
           this.uploadedUrl = data.data.url;
+          this.service.subirImagen(data)
         } else {
           alert('Error al subir imagen: ' + data.error.message);
         }
@@ -52,5 +57,23 @@ export class SubirImagenComponent {
     navigator.clipboard.writeText(this.uploadedUrl)
       .then(() => alert('URL copiada'))
       .catch(err => console.error('Error al copiar:', err));
+  }
+
+  uploadUrl() {
+    if (!this.uploadedUrl) {
+      alert('No hay una URL para subir');
+      return;
+    }
+
+    this.service.subirImagen(this.uploadedUrl).subscribe(
+      (response) => {
+        console.log('Imagen guardada en la base de datos:', response);
+        alert('Imagen guardada exitosamente');
+      },
+      (error) => {
+        console.error('Error al guardar la imagen:', error);
+        alert('Error al guardar la imagen en la base de datos');
+      }
+    );
   }
 }

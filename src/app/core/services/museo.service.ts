@@ -9,17 +9,14 @@ export class MuseoService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'https://tu-api.com/api/museos';
+  private baseUrl = 'http://localhost:3000/museum';
 
 
-  subirImagen(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('imagen', file);
-
-    return this.http.post(`${this.baseUrl}/subir-imagen`, formData);
+  subirImagen(url: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/upload-image`, { url });
   }
 
   obtenerImagenes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/imagenes`);
+    return this.http.get<any[]>(`${this.baseUrl}/images`);
   }
 }

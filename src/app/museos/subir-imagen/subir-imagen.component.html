@@ -27,5 +27,12 @@
                 </button>
             </div>
         </div>
+
+        <div *ngIf="uploadedUrl" class="upload-button">
+            <button mat-icon-button (click)="uploadUrl()" class="file-input-label">
+                <mat-icon>check_circle_outline</mat-icon>
+                Subir Imagen
+            </button>
+        </div>
     </div>
 </div>
