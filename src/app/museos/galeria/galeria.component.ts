@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MuseoService } from 'src/app/core/services/museo.service';
 
 @Component({
   selector: 'app-galeria',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./galeria.component.scss']
 })
 export class GaleriaComponent {
-  images = [
+  constructor(private museumService: MuseoService) { }
+
+
+  imgs = [
     { src: 'assets/img/m13.jpg', size: 'medium' },
     { src: 'assets/img/m14.jpg', size: 'small' },
     { src: 'assets/img/m3.jpg', size: 'medium' },
@@ -20,4 +24,33 @@ export class GaleriaComponent {
     { src: 'assets/img/m11.jpg', size: 'large' },
     { src: 'assets/img/m12.jpg', size: 'small' },
   ];
+
+
+  images: { src: string; size: string }[] = [];
+
+
+  ngOnInit(): void {
+    this.loadImages();
+  }
+
+  loadImages(): void {
+    this.museumService.obtenerImagenes().subscribe({
+      next: (data: any[]) => {
+        // Asigna un tamaño aleatorio a cada imagen
+        this.images = data.map((image) => ({
+          src: image.url,
+          size: this.getRandomSize(),
+        }));
+      },
+      error: (err) => {
+        console.error('Error al cargar las imágenes:', err);
+      },
+    });
+  }
+
+  getRandomSize(): string {
+    const sizes = ['small', 'medium', 'large'];
+    const randomIndex = Math.floor(Math.random() * sizes.length);
+    return sizes[randomIndex];
+  }
 }
