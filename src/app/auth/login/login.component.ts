@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Teacher } from 'src/app/models/teacher.model';
@@ -9,6 +9,7 @@ import { Teacher } from 'src/app/models/teacher.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @Output() toggleSidebar = new EventEmitter<void>();
   isLogin = true;
 
   email = '';
@@ -24,16 +25,22 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.isLogin) {
-      this.auth.login(this.email, this.password).subscribe(
-        (user) => {
-          console.log('Inicio de sesión exitoso:', user);
-          this.router.navigate(['/profile']);
+      this.auth.login(this.email, this.password).subscribe({
+        next: (res) => {
+          console.log('Inicio de sesión exitoso:', res);
+
+          if (res.user) {
+            this.auth.setUser(res.user);
+          }
+
+          this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          console.error('Error en credenciales:', error);
-          alert('Credenciales incorrectas');
+        error: (err) => {
+          alert('Login fallido');
+          console.error(err);
         }
-      );
+      });
+
     } else {
       const newUser = {
         email: this.email,
@@ -44,7 +51,7 @@ export class LoginComponent {
       this.auth.register(newUser).subscribe(
         (user) => {
           console.log('Registro exitoso:', user);
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/dashborad']);
         },
         (error) => {
           console.error('Error en el registro:', error);

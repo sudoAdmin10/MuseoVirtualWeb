@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Teacher } from "src/app/models/teacher.model";
 
 @Injectable({
@@ -10,6 +10,8 @@ import { Teacher } from "src/app/models/teacher.model";
 export class AuthService {
     constructor(private http: HttpClient) { }
     private currentUser: Teacher | null = null;
+    private loggedIn = new BehaviorSubject<boolean>(false);
+
     url = 'http://localhost:3000/users'
 
     login(email: string, password: string): Observable<any> {
@@ -29,11 +31,33 @@ export class AuthService {
 
     }
 
+    getRole(): 'admin' | 'user' | 'visitor' | null {
+        return this.currentUser ? this.currentUser.role : null;
+    }
+
+    setUser(user: Teacher): void {
+        this.currentUser = user;
+        this.loggedIn.next(true);
+    }
+
     getCurrentUser(): Teacher | null {
         return this.currentUser;
     }
 
+    isLoggedIn(): Observable<boolean> {
+        return this.loggedIn.asObservable();
+    }
+
     logout(): void {
         this.currentUser = null;
+        this.loggedIn.next(false);
+    }
+
+    loadUserFromStorage(): void {
+        const data = localStorage.getItem('currentUser');
+        if (data) {
+            this.currentUser = JSON.parse(data);
+            this.loggedIn.next(true);
+        }
     }
 }

@@ -3,5 +3,5 @@ export interface Teacher {
     username: string;
     email: string;
     password: string;
-    role: string;
+    role: 'admin' | 'user' | 'visitor';
 }

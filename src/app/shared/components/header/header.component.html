@@ -1,4 +1,4 @@
-<mat-toolbar class="header-toolbar">
+<mat-toolbar class="header-toolbar" id="myHeader">
     <button mat-button (click)="home()">
         <img src="../../../../assets/img/logoFit.png" alt="logoFit" class="img-logo">
     </button>
@@ -13,7 +13,7 @@
             <strong>Galeria</strong>
         </button>
 
-        <button mat-button (click)="museum()">
+        <button *ngIf="isLogged && isAdmin" mat-button (click)="museum()">
             <strong>Museo</strong>
         </button>
 
