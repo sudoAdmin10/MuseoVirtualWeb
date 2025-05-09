@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { MatCardModule } from '@angular/material/card'
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import { share } from 'rxjs';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MatIcon } from '@angular/material/icon';
     MaterialModule,
     MatCardModule,
     FormsModule,
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,

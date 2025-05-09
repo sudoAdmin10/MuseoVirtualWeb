@@ -1,0 +1,51 @@
+<div class="container">
+    <!-- Lista de imágenes -->
+    <div class="image-list">
+        <h3>Imágenes del Museo</h3>
+        <mat-list>
+            <mat-list-item *ngFor="let image of images; let i = index" (click)="selectImage(image, i)">
+                <img [src]="image.url" alt="{{ image.title }}" class="thumbnail" />
+                <span>{{ image.title }}</span>
+                <button mat-icon-button color="warn" (click)="deleteImage(i, $event)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <!-- Editor de contenido -->
+    <div class="editor" *ngIf="selectedImage">
+        <h3>Editar Contenido</h3>
+        <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+            <div class="preview">
+                <img [src]="selectedImage.url" alt="{{ selectedImage.title }}" class="preview-image" />
+            </div>
+
+            <div class="form-img">
+                <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input matInput formControlName="title" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+
+
+
+            <div class="file-upload">
+                <label for="fileInput" class="upload-label">Cambiar Imagen</label>
+                <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" />
+            </div>
+
+            <div class="actions">
+                <button mat-raised-button class="btn-save" type="submit" [disabled]="editForm.invalid">
+                    Guardar Cambios
+                </button>
+                <button mat-raised-button color="warn" (click)="cancelEdit()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

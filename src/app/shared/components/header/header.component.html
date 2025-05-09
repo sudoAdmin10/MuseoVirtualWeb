@@ -13,9 +13,20 @@
             <strong>Galeria</strong>
         </button>
 
-        <button *ngIf="isLogged && isAdmin" mat-button (click)="museum()">
+        <button *ngIf="isLogged && isAdmin" mat-button [matMenuTriggerFor]="museumMenu">
             <strong>Museo</strong>
         </button>
+
+        <mat-menu #museumMenu="matMenu">
+            <button mat-menu-item (click)="uploadContent()">
+                <mat-icon>upload</mat-icon>
+                <span>Subir Contenido</span>
+            </button>
+            <button mat-menu-item (click)="editContent()">
+                <mat-icon>edit</mat-icon>
+                <span>Editar Contenido</span>
+            </button>
+        </mat-menu>
 
         <span class="spacer"></span>
 

@@ -7,6 +7,7 @@ const routes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
 { path: 'profesores', loadChildren: () => import('./profesores/profesores.module').then(m => m.ProfesoresModule) },
 { path: 'museo', loadChildren: () => import('./museos/museos.module').then(m => m.MuseosModule) },
+{ path: 'editar-contenido', loadChildren: () => import('./museos/museos.module').then(m => m.MuseosModule) },
 { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 { path: '**', redirectTo: '/dashboard' },];
 

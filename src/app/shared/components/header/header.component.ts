@@ -37,4 +37,12 @@ export class HeaderComponent implements OnInit {
   museum() {
     this.router.navigate(['/museo/subir-contenido']);
   }
+
+  uploadContent() {
+    this.router.navigate(['/museo/subir-contenido']);
+  }
+
+  editContent() {
+    this.router.navigate(['/museo/editar-contenido']);
+  }
 }
