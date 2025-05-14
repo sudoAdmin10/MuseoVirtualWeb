@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MuseoService } from 'src/app/core/services/museo.service';
+import { Item } from 'src/app/models/items.model';
 
-
-interface Image {
-  id: number;
-  title: string;
-  description: string;
-  url: string;
-}
 
 @Component({
   selector: 'app-crear-editar',
@@ -16,34 +11,32 @@ interface Image {
 })
 export class CrearEditarComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private service: MuseoService) { }
 
+  images: Item[] = [];
+  selectedImage: Item | null = null;
 
-  images: Image[] = [
-    { id: 1, title: 'Obra 1', description: 'Descripción de la obra 1', url: 'assets/img/m2.jpg' },
-    { id: 2, title: 'Obra 2', description: 'Descripción de la obra 2', url: 'assets/img/m3.jpg ' },
-    { id: 1, title: 'Obra 3', description: 'Descripción de la obra 3', url: 'assets/img/m4.jpg' },
-    { id: 2, title: 'Obra 4', description: 'Descripción de la obra 4', url: 'assets/img/m5.jpg ' },
-  ];
-
-  selectedImage: Image | null = null;
   editForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
-    description: ['', Validators.required],
+    description: ['', Validators.required]
   });
 
   ngOnInit(): void {
-    this.editForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+    this.loadImages();
+  }
+
+  loadImages(): void {
+    this.service.obtenerItems().subscribe({
+      next: (res) => this.images = res,
+      error: (err) => console.error('Error al cargar imágenes', err)
     });
   }
 
-  selectImage(image: Image, index: number): void {
+  selectImage(image: Item, index: number): void {
     this.selectedImage = { ...image };
     this.editForm.patchValue({
       title: image.title,
-      description: image.description,
+      description: image.description
     });
   }
 
@@ -52,26 +45,37 @@ export class CrearEditarComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.selectedImage!.url = e.target.result;
+        if (this.selectedImage) {
+          this.selectedImage.url = e.target.result;
+        }
       };
       reader.readAsDataURL(file);
     }
   }
 
   saveChanges(): void {
-    if (this.selectedImage && this.editForm.valid) {
-      const updatedData = this.editForm.value;
-      this.selectedImage.title = updatedData.title;
-      this.selectedImage.description = updatedData.description;
+    if (!this.selectedImage || this.editForm.invalid) return;
 
-      // Actualizar la lista de imágenes
-      const index = this.images.findIndex((img) => img.id === this.selectedImage!.id);
-      if (index !== -1) {
-        this.images[index] = { ...this.selectedImage };
+    const data = {
+      title: this.editForm.value.title,
+      description: this.editForm.value.description,
+      url: this.selectedImage.url
+    };
+
+    this.service.editarItems(this.selectedImage.item_id, data).subscribe({
+      next: () => {
+        const index = this.images.findIndex(img => img.item_id === this.selectedImage!.item_id);
+        if (index !== -1) {
+          this.images[index] = { item_id: this.selectedImage!.item_id, ...data };
+        }
+        alert('Cambios guardados exitosamente');
+        this.cancelEdit();
+      },
+      error: (err) => {
+        console.error('Error al guardar cambios', err);
+        alert('Error al guardar los cambios');
       }
-
-      alert('Cambios guardados exitosamente');
-    }
+    });
   }
 
   cancelEdit(): void {
@@ -81,10 +85,19 @@ export class CrearEditarComponent implements OnInit {
 
   deleteImage(index: number, event: Event): void {
     event.stopPropagation();
+    const image = this.images[index];
     if (confirm('¿Estás seguro de eliminar esta imagen?')) {
-      this.images.splice(index, 1);
-      this.selectedImage = null;
-      this.editForm.reset();
+      this.service.deleteItems(image.item_id).subscribe({
+        next: () => {
+          this.images.splice(index, 1);
+          this.cancelEdit();
+          alert('Imagen eliminada');
+        },
+        error: (err) => {
+          console.error('Error al eliminar la imagen', err);
+          alert('Error al eliminar la imagen');
+        }
+      });
     }
   }
 }

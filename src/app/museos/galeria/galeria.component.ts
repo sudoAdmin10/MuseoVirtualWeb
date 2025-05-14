@@ -36,7 +36,6 @@ export class GaleriaComponent {
   loadImages(): void {
     this.museumService.obtenerImagenes().subscribe({
       next: (data: any[]) => {
-        // Asigna un tamaño aleatorio a cada imagen
         this.images = data.map((image) => ({
           src: image.url,
           size: this.getRandomSize(),
